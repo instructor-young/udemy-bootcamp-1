@@ -1,0 +1,56 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+}
+
+#header {
+  height: 120px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+}
+
+#header-logo {
+  color: red;
+  font-size: 48px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.movies {
+}
+
+.movies-title {
+  margin: 0;
+  color: white;
+  padding: 48px 32px;
+  font-size: 32px;
+}
+
+.movies-list {
+  margin: 0;
+  list-style: none;
+  display: flex;
+  padding: 0 32px;
+  width: 100vw;
+  overflow: scroll;
+  column-gap: 24px;
+}
+
+.movies-list-item-title {
+  margin: 0;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  padding-top: 16px;
+}

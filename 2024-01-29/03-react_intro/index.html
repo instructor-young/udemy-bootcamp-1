@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+      const appEl = document.getElementById("app");
+      const root = ReactDOM.createRoot(appEl);
+
+      const Greeting = () => <h1>Helle World</h1>;
+
+      root.render(<Greeting />);
+    </script>
+  </body>
+</html>
+
+<!-- <script type="text/babel" data-type="module" src="index.js"></script> -->
