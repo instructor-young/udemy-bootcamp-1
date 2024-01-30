@@ -1,0 +1,13 @@
+.header {
+  height: 144px;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+
+  .logo {
+    color: red;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+  }
+}
