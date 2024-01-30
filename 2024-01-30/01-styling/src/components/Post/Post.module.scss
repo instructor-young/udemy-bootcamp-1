@@ -1,0 +1,10 @@
+.post {
+  background-color: red;
+}
+
+.header {
+  > h2 {
+    font-size: 21px;
+    font-weight: 600;
+  }
+}
