@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../../components/Header";
 import styles from "./DefaultLayout.module.scss";
 
-function DefaultLayout() {
+function DefaultLayout({ isLoggedIn, setIsLoggedIn }) {
   return (
     <div className={styles.layout}>
       <Header />

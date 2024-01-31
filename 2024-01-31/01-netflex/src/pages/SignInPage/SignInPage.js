@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useAuth } from "../../contexts/auth.context";
 import styles from "./SignInPage.module.scss";
 
 function SignInPage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const { isLoggedIn, signIn } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,7 +12,7 @@ function SignInPage() {
       return alert("아이디 또는 비밀번호를 입력해 주세요");
 
     if (username === "udemy" && password === "udemy") {
-      setIsLoggedIn(true);
+      signIn();
     } else {
       return alert("아이디 또는 비밀번호가 잘못되었습니다.");
     }
