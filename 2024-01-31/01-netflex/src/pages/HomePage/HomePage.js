@@ -1,34 +1,14 @@
 import React, { useEffect, useState } from "react";
+import api from "../../api/api";
 import MoviesList from "../../components/MoviesList";
-
-const TMDB_ACCESS_TOKEN = process.env.REACT_APP_TMDB_ACCESS_TOKEN;
-const nowPlayingEndpoint =
-  "https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR&page=1";
-const topRatedEndpoint =
-  "https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&region=KR&page=1";
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
-  },
-};
-
-const getMovies = async (endpoint) => {
-  const response = await fetch(endpoint, options);
-  const data = await response.json();
-  const movies = data.results;
-
-  return movies;
-};
 
 function HomePage() {
   const [movies, setMovies] = useState({ nowPlaying: [], topRated: [] });
 
   useEffect(() => {
     Promise.all([
-      getMovies(nowPlayingEndpoint),
-      getMovies(topRatedEndpoint),
+      api.movies.getMovies("nowPlaying"),
+      api.movies.getMovies("topRated"),
     ]).then(([nowPlaying, topRated]) => setMovies({ nowPlaying, topRated }));
   }, []);
 

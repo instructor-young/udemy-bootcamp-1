@@ -1,0 +1,35 @@
+.wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+
+  > section + section {
+    margin-top: 3rem;
+  }
+}
+
+.mainInfo {
+  display: flex;
+  column-gap: 2rem;
+}
+
+.mainInfoRight {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.title {
+  font-size: 42px;
+  margin: 0;
+}
+
+.posterImg {
+  width: 300px;
+}
+
+.genres {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  column-gap: 1rem;
+}
