@@ -1,0 +1,29 @@
+.header {
+  height: 144px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+
+  .logo {
+    color: red;
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-decoration: none;
+  }
+
+  > nav > ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+
+    a,
+    li {
+      color: white;
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: 700;
+    }
+  }
+}
