@@ -1,11 +1,14 @@
 import React from "react";
 import Character from "../../components/Character";
+import Map from "../../components/Map";
 import Page from "../../components/Page";
 
 function HomePage() {
   return (
     <Page>
-      <Character />
+      <Map>
+        <Character />
+      </Map>
     </Page>
   );
 }
