@@ -1,26 +1,20 @@
 import { createContext, useState } from "react";
-import "./App.css";
-import HomePage from "./pages/HomePage";
 
 const initialAuthContextValue = {
   isLoggedIn: false,
-  logIn: () => {},
+  toggleLogIn: () => {},
 };
 export const AuthContext = createContext(initialAuthContextValue);
 
-function App() {
+export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  console.log("리렌더 AuthProvider");
 
   const value = {
     isLoggedIn,
-    logIn: () => setIsLoggedIn(true),
+    toggleLogIn: () => setIsLoggedIn((prev) => !prev),
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      <HomePage />
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
-
-export default App;
