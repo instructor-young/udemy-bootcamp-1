@@ -11,8 +11,8 @@ function HomePage() {
 
   return (
     <Page>
-      여긴 홈페이지에요
-      <button onClick={handleUpdateUserId}>누르면 유저 ID 새로 부여함</button>
+      {/* 여긴 홈페이지에요
+      <button onClick={handleUpdateUserId}>누르면 유저 ID 새로 부여함</button> */}
     </Page>
   );
 }
