@@ -1,7 +1,11 @@
-import React from "react";
+import { PropsWithChildren } from "react";
 import styles from "./Page.module.scss";
 
-function Page({ fullWidth, children }) {
+interface PageProps {
+  fullWidth?: boolean;
+}
+
+function Page({ fullWidth, children }: PropsWithChildren<PageProps>) {
   const style = fullWidth
     ? { maxWidth: "unset !important", padding: "0 important!" }
     : undefined;

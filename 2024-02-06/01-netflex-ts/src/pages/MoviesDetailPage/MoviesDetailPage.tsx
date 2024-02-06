@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../api/api";
 import LikeButton from "../../components/LikeButton";
@@ -7,16 +7,22 @@ import { useAuth } from "../../contexts/auth.context";
 import getTMDBImgSrc from "../../utils/getTMDBImgSrc";
 import styles from "./MoviesDetailPage.module.scss";
 
+type Movie = Awaited<ReturnType<typeof api.movies.getMovie>>;
+
 function MoviesDetailPage() {
   const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState<Movie | null>(null);
   const { isLoggedIn } = useAuth();
 
   useEffect(() => {
-    api.movies.getMovie(movieId).then((movie) => setMovie(movie));
+    if (!movieId) return;
+
+    api.movies.getMovie(Number(movieId)).then((movie) => setMovie(movie));
   }, [movieId]);
 
   if (movie === null) return null;
+
+  console.log("movie", movie);
 
   return (
     <Page>

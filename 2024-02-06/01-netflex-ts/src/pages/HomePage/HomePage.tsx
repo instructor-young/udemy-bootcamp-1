@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import api from "../../api/api";
 import MoviesList from "../../components/MoviesList";
 import Page from "../../components/Page";
 
+type Movies = {
+  nowPlaying: Awaited<ReturnType<typeof api.movies.getMovies>>;
+  topRated: Awaited<ReturnType<typeof api.movies.getMovies>>;
+};
+
 function HomePage() {
-  const [movies, setMovies] = useState({ nowPlaying: [], topRated: [] });
+  const [movies, setMovies] = useState<Movies>({
+    nowPlaying: [],
+    topRated: [],
+  });
 
   useEffect(() => {
     Promise.all([
