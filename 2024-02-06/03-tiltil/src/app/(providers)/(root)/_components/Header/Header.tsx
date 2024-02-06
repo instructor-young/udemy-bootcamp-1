@@ -14,6 +14,9 @@ function Header() {
           <li>
             <Link href="/til/latest">최신</Link>
           </li>
+          <li>
+            <Link href="/til/write">TIL 쓰러가기</Link>
+          </li>
         </ul>
       </nav>
 

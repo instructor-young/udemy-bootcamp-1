@@ -1,10 +1,12 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import {
   Dispatch,
   SetStateAction,
   createContext,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -28,6 +30,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isLoggedIn,
     setIsLoggedIn,
   };
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      router.replace("/");
+    }
+  }, [router, isLoggedIn]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
