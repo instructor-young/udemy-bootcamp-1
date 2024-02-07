@@ -1,13 +1,9 @@
 "use client";
 
-import API from "@/api";
-import { useQuery } from "@tanstack/react-query";
+import { useQueryTils } from "@/react-query/tils/useQueryTils";
 
 function List() {
-  useQuery({
-    queryKey: ["tils", { isList: true }],
-    queryFn: API.tils.getTils,
-  });
+  const { data, isLoading } = useQueryTils();
 
   return <div>List</div>;
 }
