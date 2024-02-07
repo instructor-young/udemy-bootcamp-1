@@ -6,12 +6,12 @@ import { useQuery } from "@tanstack/react-query";
 function TilDetailPage(props: { params: { tilId: string } }) {
   const tilId = props.params.tilId;
 
-  useQuery({
+  const { data: til } = useQuery({
     queryKey: ["tils", { isList: false, id: tilId }],
     queryFn: () => API.tils.getTil(tilId),
   });
 
-  return <Page>{tilId}</Page>;
+  return <Page title={til?.title}>{til?.content}</Page>;
 }
 
 export default TilDetailPage;

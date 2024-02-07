@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
         title,
         content,
         author: {
-          name: "자기 이름",
+          name: "유진영",
         },
       }),
     }
