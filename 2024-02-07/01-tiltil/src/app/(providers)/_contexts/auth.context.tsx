@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/api";
 import { useRouter } from "next/navigation";
 import {
   Dispatch,
@@ -33,9 +34,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      router.replace("/");
+    if (!isLoggedIn) {
+      authClient.defaults.headers.common.Authorization = "";
     }
+
+    router.replace("/");
   }, [router, isLoggedIn]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

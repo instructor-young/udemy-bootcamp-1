@@ -19,6 +19,9 @@ function Header() {
           <li>
             <Link href="/tils/write">TIL 쓰러가기</Link>
           </li>
+          <li>
+            <Link href="/my-profile">내 프로필</Link>
+          </li>
         </ul>
       </nav>
 
