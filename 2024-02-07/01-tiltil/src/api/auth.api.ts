@@ -1,17 +1,27 @@
-import axios from "axios";
+import { authClient } from ".";
 
-const authClient = axios.create({
-  baseURL: "https://port-0-auth-server-qrd2als49b8m4.sel5.cloudtype.app",
-});
+async function signUp(dto: { id: string; pw: string; name: string }) {
+  const response = await authClient.post("/auth/sign-up", dto);
+  const data = response.data;
+  const accessToken = data.accessToken;
 
-async function signUp(data: { id: string; pw: string; name: string }) {
-  const response = await authClient.post("/auth/sign-up", data);
-  console.log(response);
+  if (!accessToken) throw new Error("회원가입에 실패하였습니다~!");
+
+  authClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+  return accessToken;
 }
 
-async function logIn(data: { id: string; pw: string }) {
-  const response = await authClient.post("/auth/log-in", data);
-  console.log(response);
+async function logIn(dto: { id: string; pw: string }) {
+  const response = await authClient.post("/auth/log-in", dto);
+  const data = response.data;
+  const accessToken = data.accessToken;
+
+  if (!accessToken) throw new Error("로그인에 실패하였습니다~!");
+
+  authClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+  return accessToken;
 }
 
 const auth = {

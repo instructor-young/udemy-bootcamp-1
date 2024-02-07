@@ -2,17 +2,29 @@
 
 import API from "@/api";
 import { useAuth } from "@/app/(providers)/_contexts/auth.context";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
 
 function LogInForm() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const router = useRouter();
+
+  const { mutate, isPending } = useMutation({ mutationFn: API.auth.logIn });
 
   const auth = useAuth();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    API.auth.logIn({ id, pw });
+    mutate(
+      { id, pw },
+      {
+        onSuccess: () => {
+          auth.setIsLoggedIn(true);
+        },
+      }
+    );
   };
 
   return (
@@ -34,7 +46,13 @@ function LogInForm() {
         placeholder="PW"
         type="password"
       />
-      <button type="submit">로그인하기</button>
+      <button
+        type="submit"
+        className="bg-sky-500 disabled:bg-red-500"
+        disabled={isPending}
+      >
+        로그인하기
+      </button>
     </form>
   );
 }

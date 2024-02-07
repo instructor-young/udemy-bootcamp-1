@@ -1,6 +1,8 @@
 "use client";
 
 import API from "@/api";
+import { useAuth } from "@/app/(providers)/_contexts/auth.context";
+import { useMutation } from "@tanstack/react-query";
 import { FormEventHandler, useRef } from "react";
 
 function SignUpForm() {
@@ -8,6 +10,10 @@ function SignUpForm() {
   const pwInputRef = useRef<HTMLInputElement>(null);
   const pw2InputRef = useRef<HTMLInputElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
+
+  const { mutate, isPending } = useMutation({ mutationFn: API.auth.signUp });
+
+  const { setIsLoggedIn } = useAuth();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -22,7 +28,7 @@ function SignUpForm() {
 
     const data = { id, pw, name };
 
-    API.auth.signUp(data);
+    mutate(data, { onSuccess: () => setIsLoggedIn(true) });
   };
 
   return (
@@ -55,7 +61,13 @@ function SignUpForm() {
         type="text"
       />
 
-      <button type="submit">회원가입하기</button>
+      <button
+        className="bg-sky-500 disabled:bg-red-500"
+        type="submit"
+        disabled={isPending}
+      >
+        회원가입하기
+      </button>
     </form>
   );
 }
