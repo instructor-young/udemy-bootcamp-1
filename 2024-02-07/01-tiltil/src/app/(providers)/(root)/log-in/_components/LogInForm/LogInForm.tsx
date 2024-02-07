@@ -1,5 +1,6 @@
 "use client";
 
+import API from "@/api";
 import { useAuth } from "@/app/(providers)/_contexts/auth.context";
 import { FormEventHandler, useState } from "react";
 
@@ -11,26 +12,27 @@ function LogInForm() {
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-
-    const url = `${window.location.origin}/api/auth/log-in`;
-    const options = { method: "POST", body: JSON.stringify({ id, pw }) };
-    const response = await fetch(url, options);
-    const data = await response.json();
-
-    if (data === "OK" && response.status === 200) {
-      auth.setIsLoggedIn(true);
-    } else {
-      alert("로그인 실패~");
-    }
+    API.auth.logIn({ id, pw });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={id} onChange={(e) => setId(e.target.value)} />
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-y-4 items-center"
+    >
       <input
-        type="password"
+        className="border max-w-60"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        placeholder="ID"
+        type="text"
+      />
+      <input
+        className="border max-w-60"
         value={pw}
         onChange={(e) => setPw(e.target.value)}
+        placeholder="PW"
+        type="password"
       />
       <button type="submit">로그인하기</button>
     </form>

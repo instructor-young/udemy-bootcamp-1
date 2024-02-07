@@ -1,5 +1,6 @@
 "use client";
 
+import API from "@/api";
 import { FormEventHandler, useRef } from "react";
 
 function SignUpForm() {
@@ -20,7 +21,8 @@ function SignUpForm() {
     if (!id || !pw || !pw2 || !name) return alert("모든 값을 입력해 주세요");
 
     const data = { id, pw, name };
-    console.log(data);
+
+    API.auth.signUp(data);
   };
 
   return (
