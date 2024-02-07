@@ -6,7 +6,7 @@ interface PageProps {
 
 function Page({ title, children }: PropsWithChildren<PageProps>) {
   return (
-    <main className="max-w-screen-lg mx-auto flex flex-col">
+    <main className="max-w-screen-lg mx-auto flex flex-col px-5 py-8">
       {title && <h1 className="text-3xl font-bold  mb-8">{title}</h1>}
       {children}
     </main>
