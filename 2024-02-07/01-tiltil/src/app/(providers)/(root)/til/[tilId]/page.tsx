@@ -1,4 +1,5 @@
 "use client";
+import Page from "@/components/Page";
 import { useQuery } from "@tanstack/react-query";
 
 function TilDetailPage(props: { params: { tilId: string } }) {
@@ -17,7 +18,7 @@ function TilDetailPage(props: { params: { tilId: string } }) {
     },
   });
 
-  return <div>{tilId}</div>;
+  return <Page>{tilId}</Page>;
 }
 
 export default TilDetailPage;

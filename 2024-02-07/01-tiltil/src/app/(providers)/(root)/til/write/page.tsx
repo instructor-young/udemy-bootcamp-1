@@ -1,10 +1,11 @@
+import Page from "@/components/Page";
 import TILForm from "./_components/TILForm";
 
 function TILWritePage() {
   return (
-    <div>
+    <Page>
       <TILForm />
-    </div>
+    </Page>
   );
 }
 

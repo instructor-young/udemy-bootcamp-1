@@ -1,11 +1,11 @@
+import Page from "@/components/Page";
 import PopularTils from "./_components/PopularTils";
 
 function HomePage() {
   return (
-    <div>
-      <h1>홈페이지</h1>
+    <Page>
       <PopularTils />
-    </div>
+    </Page>
   );
 }
 

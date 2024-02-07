@@ -2,11 +2,11 @@ import Link from "next/link";
 
 function HeaderAuthButtons() {
   return (
-    <div className="flex gap-x-4 items-center">
+    <div className="flex gap-x-4 items-center ml-auto text-sm">
       <Link href="/sign-up" prefetch>
-        회원가입하기
+        회원가입
       </Link>
-      <Link href="/log-in">로그인하기</Link>
+      <Link href="/log-in">로그인</Link>
     </div>
   );
 }

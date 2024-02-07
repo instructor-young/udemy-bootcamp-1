@@ -3,11 +3,13 @@ import HeaderAuthButtons from "./_components/HeaderAuthButtons";
 
 function Header() {
   return (
-    <header className="h-20 border-b flex items-center">
-      <Link href="/">띨띨</Link>
+    <header className="h-20 border-b flex items-center px-5">
+      <Link href="/">
+        <strong className="text-2xl">띨띨;;;</strong>
+      </Link>
 
-      <nav>
-        <ul className="flex">
+      <nav className="ml-20">
+        <ul className="flex text-sm font-medium items-center gap-x-5">
           <li>
             <Link href="/til/trending">트렌딩</Link>
           </li>

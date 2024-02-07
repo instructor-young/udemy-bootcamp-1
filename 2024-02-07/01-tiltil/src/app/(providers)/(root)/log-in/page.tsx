@@ -1,10 +1,11 @@
+import Page from "@/components/Page";
 import LogInForm from "./_components/LogInForm/LogInForm";
 
 function LogInPage() {
   return (
-    <div>
+    <Page>
       <LogInForm />
-    </div>
+    </Page>
   );
 }
 
