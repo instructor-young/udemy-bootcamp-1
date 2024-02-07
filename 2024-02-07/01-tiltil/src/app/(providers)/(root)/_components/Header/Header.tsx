@@ -11,13 +11,13 @@ function Header() {
       <nav className="ml-20">
         <ul className="flex text-sm font-medium items-center gap-x-5">
           <li>
-            <Link href="/til/trending">트렌딩</Link>
+            <Link href="/tils?type=trending">트렌딩</Link>
           </li>
           <li>
-            <Link href="/til/latest">최신</Link>
+            <Link href="/tils?type=latest">최신</Link>
           </li>
           <li>
-            <Link href="/til/write">TIL 쓰러가기</Link>
+            <Link href="/tils/write">TIL 쓰러가기</Link>
           </li>
         </ul>
       </nav>
