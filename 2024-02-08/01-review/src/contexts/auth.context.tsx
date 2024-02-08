@@ -34,7 +34,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    router.replace("/");
+    if (isLoggedIn) {
+      router.replace("/");
+    }
   }, [router, isLoggedIn]);
 
   const value: AuthContextValue = { isLoggedIn, logIn, logOut };
