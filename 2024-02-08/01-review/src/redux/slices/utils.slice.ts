@@ -20,3 +20,6 @@ const utilsSlice = createSlice({
     },
   },
 });
+
+export const utilsReducer = utilsSlice.reducer;
+export const { setModal } = utilsSlice.actions;

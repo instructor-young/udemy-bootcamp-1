@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HeaderMenus from "./components/HeaderMenus";
 import HeaderNav from "./components/HeaderNav";
 
 function Header() {
@@ -9,6 +10,8 @@ function Header() {
       </Link>
 
       <HeaderNav />
+
+      <HeaderMenus />
     </header>
   );
 }
