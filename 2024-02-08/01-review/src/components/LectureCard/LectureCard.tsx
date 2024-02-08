@@ -17,6 +17,7 @@ function LectureCard({ lecture }: LectureCardProps) {
           src={lecture.url}
           alt={lecture.title}
           fill
+          unoptimized
           className="object-cover"
         />
       </div>

@@ -6,11 +6,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 type AuthContextValue = {
   isLoggedIn: boolean;
   logIn: (accessToken: string) => void;
+  logOut: () => void;
 };
 
 const initialValue: AuthContextValue = {
   isLoggedIn: false,
   logIn: () => {},
+  logOut: () => {},
 };
 
 const AuthContext = createContext<AuthContextValue>(initialValue);
@@ -26,11 +28,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     API.setAccessToken(accessToken);
   };
 
+  const logOut = () => {
+    setIsLoggedIn(false);
+    API.removeAccessToken();
+  };
+
   useEffect(() => {
     router.replace("/");
   }, [router, isLoggedIn]);
 
-  const value: AuthContextValue = { isLoggedIn, logIn };
+  const value: AuthContextValue = { isLoggedIn, logIn, logOut };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

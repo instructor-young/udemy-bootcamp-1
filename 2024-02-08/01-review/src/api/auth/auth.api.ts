@@ -9,21 +9,21 @@ class AuthAPI {
     this.coreClient = coreClient;
   }
 
-  async logIn(dto: LogInDto) {
+  logIn = async (dto: LogInDto) => {
     const url = "/auth/log-in";
     const response = await this.coreClient.post<LogInData>(url, dto);
     const data = response.data;
 
     return data;
-  }
+  };
 
-  async signUp(dto: SignUpDto) {
+  signUp = async (dto: SignUpDto) => {
     const url = "/auth/sign-up";
     const response = await this.coreClient.post<SignUpData>(url, dto);
     const data = response.data;
 
     return data;
-  }
+  };
 }
 
 export default AuthAPI;
