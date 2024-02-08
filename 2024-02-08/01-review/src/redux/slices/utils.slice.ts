@@ -1,0 +1,22 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+type UtilsStore = {
+  modal: React.ReactElement | null;
+};
+
+const initialState: UtilsStore = {
+  modal: null,
+};
+
+const utilsSlice = createSlice({
+  initialState,
+  name: "utils",
+  reducers: {
+    setModal: (
+      state,
+      action: { type: string; payload: UtilsStore["modal"] }
+    ) => {
+      state.modal = action.payload;
+    },
+  },
+});
