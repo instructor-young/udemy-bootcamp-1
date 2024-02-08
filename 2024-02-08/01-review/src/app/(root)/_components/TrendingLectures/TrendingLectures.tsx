@@ -1,11 +1,10 @@
 import LectureCardsList from "@/components/LectureCardsList";
-import axios from "axios";
 
 async function getLectures() {
-  const response = await axios.get(
-    "https://jsonplaceholder.typicode.com/photos"
-  );
-  const data = response.data;
+  const response = await fetch("https://jsonplaceholder.typicode.com/photos", {
+    next: { revalidate: 60 },
+  });
+  const data = await response.json();
 
   return data;
 }
