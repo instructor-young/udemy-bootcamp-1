@@ -7,10 +7,12 @@ import {
   useDispatch,
   useSelector,
 } from "react-redux";
+import { cartReducer } from "./slices/cart.slice";
 import { utilsReducer } from "./slices/utils.slice";
 
 export const store = configureStore({
   reducer: {
+    cart: cartReducer,
     utils: utilsReducer,
   },
 });
