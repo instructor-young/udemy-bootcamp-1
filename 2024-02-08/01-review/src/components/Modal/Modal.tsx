@@ -18,7 +18,7 @@ function Modal({ title, children }: PropsWithChildren<ModalProps>) {
 
   return (
     <div
-      className="fixed top-0 left-0 bg-black/50 w-screen h-screen"
+      className="fixed top-0 left-0 bg-black/50 w-screen h-screen z-30"
       onClick={handleClickBackdrop}
     >
       <div
