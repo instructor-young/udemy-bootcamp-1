@@ -10,7 +10,7 @@ const initialState: UtilsStore = {
 
 const utilsSlice = createSlice({
   initialState,
-  name: "utils",
+  name: "users",
   reducers: {
     setModal: (
       state,

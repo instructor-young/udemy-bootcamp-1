@@ -1,9 +1,5 @@
-export type GetProfileData = {
-  name: string;
-  nickname: string;
-};
+import { Profile } from "@/types/Profile.type";
 
-export type UpdateProfileData = {
-  name: string;
-  nickname: string;
-};
+export type GetProfileData = Profile;
+
+export type UpdateProfileData = Profile;
