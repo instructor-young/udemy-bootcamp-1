@@ -11,11 +11,11 @@ function LogInModal() {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
-  const auth = useAuth();
+  const { logIn } = useAuth();
 
   const handleClickLogIn = async () => {
     const { accessToken } = await mutateAsync({ id, pw });
-    API.setAccessToken(accessToken);
+    logIn(accessToken);
   };
 
   return (
