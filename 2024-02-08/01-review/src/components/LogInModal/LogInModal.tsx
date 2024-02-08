@@ -2,20 +2,25 @@
 
 import API from "@/api/index.api";
 import { useAuth } from "@/contexts/auth.context";
+import { setModal } from "@/redux/slices/utils.slice";
+import { useAppDispatch } from "@/redux/store";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import Modal from "../Modal";
 
 function LogInModal() {
-  const { mutateAsync } = useMutation({ mutationFn: API.auth.logIn });
+  const dispatch = useAppDispatch();
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
-
+  const { mutateAsync } = useMutation({ mutationFn: API.auth.logIn });
   const { logIn } = useAuth();
 
   const handleClickLogIn = async () => {
     const { accessToken } = await mutateAsync({ id, pw });
     logIn(accessToken);
+
+    const action = setModal(null);
+    dispatch(action);
   };
 
   return (
