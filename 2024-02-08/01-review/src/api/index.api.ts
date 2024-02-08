@@ -9,6 +9,14 @@ const coreClient = axios.create({
 class API {
   static auth = new AuthAPI(coreClient);
   static users = new UsersAPI(coreClient);
+
+  static setAccessToken(accessToken: string) {
+    coreClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+  }
+
+  static removeAccessToken() {
+    coreClient.defaults.headers.common.Authorization = "";
+  }
 }
 
 export default API;
