@@ -3,6 +3,7 @@ import todosView from "../views/todos.view";
 
 const todosController = Router();
 
-todosController.get("/todos", todosView.getTodos);
+todosController.get("/", todosView.getTodos);
+todosController.get("/:todoId", todosView.getTodo);
 
 export default todosController;

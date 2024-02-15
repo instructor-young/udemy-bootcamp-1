@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import controllers from "./controllers";
 
 const app = express();
 const port = 5555;
@@ -6,6 +7,8 @@ const port = 5555;
 app.get("/health-check", (_, res) => {
   res.json("OK");
 });
+
+app.use(controllers);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   const response = {

@@ -7,8 +7,16 @@ const getTodos: RequestHandler = async (req, res) => {
   res.json(todos);
 };
 
+const getTodo: RequestHandler = async (req, res) => {
+  const todoId = Number(req.params.todoId);
+  const todo = await TodoModel.findUnique(todoId);
+
+  res.json(todo);
+};
+
 const todosView = {
   getTodos,
+  getTodo,
 };
 
 export default todosView;

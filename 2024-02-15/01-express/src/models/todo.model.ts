@@ -5,6 +5,13 @@ export default class TodoModel {
 
     return todos as Todo[];
   }
+
+  static async findUnique(todoId: number) {
+    const url = `https://jsonplaceholder.typicode.com/todos/${todoId}`;
+    const todo = await fetch(url).then((res) => res.json());
+
+    return todo as Todo;
+  }
 }
 
 type Todo = {
