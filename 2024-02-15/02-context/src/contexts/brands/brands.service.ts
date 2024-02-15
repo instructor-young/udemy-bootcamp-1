@@ -5,7 +5,7 @@ class BrandsService {
   async getBrands(req: Request, res: Response) {
     const brands = await brandsModel.findMany();
 
-    res.json(brands);
+    res.json(`너는 ${req.user!.id}구나`);
   }
 
   async getBrand(req: Request, res: Response) {

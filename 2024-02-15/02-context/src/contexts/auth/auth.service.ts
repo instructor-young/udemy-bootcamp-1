@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
+import { JWT_SECRET_KEY } from "../../config";
 
-const JWT_SECRET_KEY = "-eecayi2NkrwAOc7rYR1eSNVMc_Guk-Hs1sW-c3hlc-cnvhx";
-const users: Array<{ id: string; encryptedPassword: string }> = [];
+export const users: Array<{ id: string; encryptedPassword: string }> = [];
 
 class AuthService {
   async signUp(req: Request, res: Response) {
