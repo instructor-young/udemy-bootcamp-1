@@ -74,7 +74,7 @@ app.delete("/posts/:postId", async (req, res) => {
     encoding: "utf8",
   });
 
-  res.send(postId);
+  res.json(postId);
 });
 
 app.put("/posts/:postId", async (req, res) => {
