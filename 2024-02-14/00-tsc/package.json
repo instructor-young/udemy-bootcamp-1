@@ -1,0 +1,17 @@
+{
+  "name": "00-tsc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"tsc --watch --project tsconfig.json\" \"node --watch dist/main.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.3.3"
+  }
+}
