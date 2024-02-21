@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Put } from '@nestjs/common';
 import { UsersLogInDto, UsersSignUpDto } from './users.dto';
 import { UsersService } from './users.service';
 
@@ -18,5 +18,11 @@ export class UsersController {
     const result = await this.usersService.logIn(dto);
 
     return result;
+  }
+
+  @Put('profile')
+  async updateProfile() {
+    // Go~!
+    return;
   }
 }

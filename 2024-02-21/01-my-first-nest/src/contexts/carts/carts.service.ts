@@ -1,26 +1,52 @@
-import { Injectable } from '@nestjs/common';
-import { CreateCartDto } from './dto/create-cart.dto';
-import { UpdateCartDto } from './dto/update-cart.dto';
+import { BadRequestException, Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/db/prisma/prisma.service';
 
 @Injectable()
 export class CartsService {
-  create(createCartDto: CreateCartDto) {
-    return 'This action adds a new cart';
+  constructor(private readonly prismaService: PrismaService) {}
+
+  async getCart(userId: number) {
+    const cart = await this.prismaService.cart.findUnique({
+      where: { userId },
+      include: {
+        items: { include: { product: { include: { brand: true } } } },
+      },
+    });
+
+    return cart;
   }
 
-  findAll() {
-    return `This action returns all carts`;
+  async addItemToCart(userId: number, productId: number | undefined) {
+    if (!productId) throw new BadRequestException('No productId');
+
+    const cartItem = await this.prismaService.cartItem.upsert({
+      where: { cartId_productId: { cartId: userId, productId } },
+      create: { cartId: userId, productId, quantity: 1 },
+      update: { quantity: { increment: 1 } },
+    });
+
+    return cartItem;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cart`;
+  async removeItemFromCart(userId: number, productId: number | undefined) {
+    if (!productId) throw new BadRequestException('No productId');
+
+    const cartItem = await this.prismaService.cartItem.update({
+      where: { cartId_productId: { cartId: userId, productId } },
+      data: { quantity: { decrement: 1 } },
+    });
+    if (cartItem.quantity === 0) await this.clearItemInCart(userId, productId);
+
+    return cartItem;
   }
 
-  update(id: number, updateCartDto: UpdateCartDto) {
-    return `This action updates a #${id} cart`;
-  }
+  async clearItemInCart(userId: number, productId: number | undefined) {
+    if (!productId) throw new BadRequestException('No productId');
 
-  remove(id: number) {
-    return `This action removes a #${id} cart`;
+    const cartItem = await this.prismaService.cartItem.delete({
+      where: { cartId_productId: { cartId: userId, productId } },
+    });
+
+    return cartItem;
   }
 }

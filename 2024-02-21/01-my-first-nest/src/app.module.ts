@@ -3,6 +3,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AccountsModule } from './contexts/accounts/accounts.module';
+import { BrandsModule } from './contexts/brands/brands.module';
 import { CartsModule } from './contexts/carts/carts.module';
 import { OrdersModule } from './contexts/orders/orders.module';
 import { ProductsModule } from './contexts/products/products.module';
@@ -19,6 +20,7 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
     OrdersModule,
     CartsModule,
     PrismaModule,
+    BrandsModule,
   ],
 })
 export class AppModule implements NestModule {
