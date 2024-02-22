@@ -6,7 +6,7 @@ import { PrismaService } from 'src/db/prisma/prisma.service';
 export class AccommodationsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(data: Prisma.AccommodationUncheckedCreateInput) {
+  async createAccommodation(data: Prisma.AccommodationUncheckedCreateInput) {
     const accommodation = await this.prismaService.accommodation.create({
       data,
     });
@@ -14,19 +14,17 @@ export class AccommodationsService {
     return accommodation;
   }
 
-  findAll() {
-    return `This action returns all accommodations`;
+  async getAccommodations() {
+    const accommodations = await this.prismaService.accommodation.findMany();
+
+    return accommodations;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} accommodation`;
-  }
+  async getAccommodation(accommodationId: number) {
+    const accommodations = await this.prismaService.accommodation.findUnique({
+      where: { id: accommodationId },
+    });
 
-  update(id: number) {
-    return `This action updates a #${id} accommodation`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} accommodation`;
+    return accommodations;
   }
 }

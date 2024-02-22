@@ -1,16 +1,16 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
 } from '@nestjs/common';
 import { Partner } from '@prisma/client';
 import { DPartner } from 'src/decorators/partner.decorator';
 import { Private } from 'src/decorators/private.decorator';
-import { AccommodationsCreateDto } from './accommodations.dto';
+import { AccommodationsRegisterDto } from './accommodations.dto';
 import { AccommodationsService } from './accommodations.service';
 
 @Controller('accommodations')
@@ -19,27 +19,29 @@ export class AccommodationsController {
 
   @Post()
   @Private('partner')
-  create(@DPartner() partner: Partner, @Body() dto: AccommodationsCreateDto) {
-    return this.accommodationsService.create({ ...dto, partnerId: partner.id });
+  registerAccommodation(
+    @DPartner() partner: Partner,
+    @Body() dto: AccommodationsRegisterDto,
+  ) {
+    return this.accommodationsService.createAccommodation({
+      ...dto,
+      partnerId: partner.id,
+    });
   }
 
   @Get()
-  findAll() {
-    return this.accommodationsService.findAll();
+  getAccommodations() {
+    return this.accommodationsService.getAccommodations();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.accommodationsService.findOne(+id);
+  @Get(':accommodationId')
+  getAccommodation(
+    @Param('accommodationId', ParseIntPipe) accommodationId: number,
+  ) {
+    return this.accommodationsService.getAccommodation(accommodationId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string) {
-    return this.accommodationsService.update(+id);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.accommodationsService.remove(+id);
-  }
+  @Patch(':accommodationId')
+  @Private('partner')
+  updateAccommodation() {}
 }

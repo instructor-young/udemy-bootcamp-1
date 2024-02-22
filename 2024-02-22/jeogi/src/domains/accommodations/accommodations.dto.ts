@@ -1,6 +1,6 @@
 import { AccommodationType } from '@prisma/client';
 
-export type AccommodationsCreateDto = {
+export type AccommodationsRegisterDto = {
   type: AccommodationType;
   name: string;
   address1: string;
