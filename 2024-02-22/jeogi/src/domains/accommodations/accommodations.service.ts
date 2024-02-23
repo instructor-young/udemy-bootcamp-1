@@ -1,5 +1,11 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
-import { Accommodation, Partner, Prisma, Room } from '@prisma/client';
+import {
+  Accommodation,
+  AccommodationType,
+  Partner,
+  Prisma,
+  Room,
+} from '@prisma/client';
 import { PrismaService } from 'src/db/prisma/prisma.service';
 import { RoomsService } from './rooms/rooms.service';
 
@@ -18,8 +24,10 @@ export class AccommodationsService {
     return accommodation;
   }
 
-  async getAccommodations() {
-    const accommodations = await this.prismaService.accommodation.findMany();
+  async getAccommodations(type?: AccommodationType) {
+    const accommodations = await this.prismaService.accommodation.findMany({
+      where: { type },
+    });
 
     return accommodations;
   }

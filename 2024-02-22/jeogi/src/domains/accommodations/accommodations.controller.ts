@@ -7,8 +7,9 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
-import { Partner } from '@prisma/client';
+import { AccommodationType, Partner } from '@prisma/client';
 import { DPartner } from 'src/decorators/partner.decorator';
 import { Private } from 'src/decorators/private.decorator';
 import {
@@ -34,8 +35,8 @@ export class AccommodationsController {
   }
 
   @Get()
-  getAccommodations() {
-    return this.accommodationsService.getAccommodations();
+  getAccommodations(@Query('type') type?: AccommodationType) {
+    return this.accommodationsService.getAccommodations(type);
   }
 
   @Get(':accommodationId')

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Accommodation, Prisma, Room } from '@prisma/client';
+import { Accommodation, Prisma, Reservation, Room } from '@prisma/client';
 import { PrismaService } from 'src/db/prisma/prisma.service';
 
 @Injectable()
@@ -25,5 +25,18 @@ export class RoomsService {
     });
 
     return room;
+  }
+
+  async makeReservation(
+    reservedById: Reservation['reservedById'],
+    roomId: Reservation['roomId'],
+    date: Reservation['date'],
+  ) {
+    const reservation = await this.prismaService.reservation.update({
+      where: { roomId_date: { roomId, date } },
+      data: { reservedAt: new Date(), reservedById },
+    });
+
+    return reservation;
   }
 }
