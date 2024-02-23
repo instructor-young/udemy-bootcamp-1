@@ -8,7 +8,10 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { AccommodationType, Partner } from '@prisma/client';
 import { DPartner } from 'src/decorators/partner.decorator';
 import { Private } from 'src/decorators/private.decorator';
@@ -49,6 +52,21 @@ export class AccommodationsController {
   @Patch(':accommodationId')
   @Private('partner')
   updateAccommodation() {}
+
+  @Post(':accommodationId/images')
+  @Private('partner')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadAccommodationMainImage(
+    @DPartner() partner: Partner,
+    @Param('accommodationId', ParseIntPipe) accommodationId: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.accommodationsService.addImageToAccommodation(
+      partner,
+      accommodationId,
+      file,
+    );
+  }
 
   @Post(':accommodationId/rooms')
   @Private('partner')

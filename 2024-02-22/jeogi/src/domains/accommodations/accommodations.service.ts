@@ -6,6 +6,7 @@ import {
   Prisma,
   Room,
 } from '@prisma/client';
+import * as fs from 'fs/promises';
 import { PrismaService } from 'src/db/prisma/prisma.service';
 import { RoomsService } from './rooms/rooms.service';
 
@@ -70,4 +71,22 @@ export class AccommodationsService {
 
     return room;
   }
+
+  async addImageToAccommodation(file: Express.Multer.File) {
+    await fs.writeFile(`./public/${file.originalname}`, file.buffer);
+  }
+  // async addImageToAccommodation(
+  //   partner: Pick<Partner, 'id'>,
+  //   accommodationId: Accommodation['id'],
+  //   file: Express.Multer.File,
+  // ) {
+  //   const accommodation = await this.prismaService.accommodation.findUnique({
+  //     where: { id: accommodationId, partnerId: partner.id },
+  //   });
+  //   if (!accommodation) throw new ForbiddenException();
+  //   console.log(file);
+  //   await fs.writeFile(`./public/${file.originalname}`, file.buffer);
+
+  //   console.log(file);
+  // }
 }
