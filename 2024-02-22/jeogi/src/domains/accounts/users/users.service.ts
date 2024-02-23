@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker/locale/ko';
 import {
   BadRequestException,
   Injectable,
@@ -25,11 +24,6 @@ export class UsersService {
       id: generateRandomId(),
       email,
       encryptedPassword: await hash(password, 12),
-      profile: {
-        create: {
-          nickname: faker.internet.displayName(),
-        },
-      },
     };
     const user = await this.prismaService.user.create({
       data,

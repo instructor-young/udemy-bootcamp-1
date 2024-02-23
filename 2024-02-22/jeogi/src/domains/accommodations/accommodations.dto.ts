@@ -1,4 +1,4 @@
-import { AccommodationType } from '@prisma/client';
+import { AccommodationType, Prisma } from '@prisma/client';
 
 export type AccommodationsRegisterDto = {
   type: AccommodationType;
@@ -10,3 +10,6 @@ export type AccommodationsRegisterDto = {
   description?: string;
   imgUrl?: string;
 };
+
+export type AccommodationsAddRoomDto =
+  Prisma.RoomCreateWithoutAccommodationInput;
