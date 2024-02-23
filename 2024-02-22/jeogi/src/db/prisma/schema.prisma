@@ -101,8 +101,8 @@ model Reservation {
   room         Room      @relation(fields: [roomId], references: [id])
   roomId       Int
   date         DateTime
-  reservedBy   User      @relation(fields: [reservedById], references: [id])
-  reservedById String
+  reservedBy   User?     @relation(fields: [reservedById], references: [id])
+  reservedById String?
   reservedAt   DateTime?
   checkedInAt  DateTime?
   createdAt    DateTime  @default(now())
